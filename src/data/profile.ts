@@ -64,8 +64,8 @@ export const profile = {
       summary:
         "An Arduino-powered physical device that converts text into Morse code and writes it using a servo-actuated pen and stepper-motor paper feeder.",
       visual: "hardware",
-      video: {
-        src: "/videos/projects/Morse-Code-Converter.mp4",
+      youtube: {
+        embedUrl: "https://www.youtube-nocookie.com/embed/1e8Tm8hPNQU",
         label: "Morse Code Converter demo video",
       },
       details: [

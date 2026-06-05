@@ -129,17 +129,14 @@ function ProjectVisual({ project }: { project: Project }) {
           <div className="relative overflow-hidden rounded-[8px] border border-white/12 bg-[#0d0d0d] p-3 shadow-2xl shadow-black/25">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_10%,rgba(186,230,253,0.09),transparent_30%)]" />
             <div className="relative overflow-hidden rounded-[8px] border border-white/10 bg-black">
-              <video
-                className="aspect-video h-full w-full bg-black object-cover"
-                controls
-                muted
-                playsInline
-                preload="metadata"
-                aria-label={project.video.label}
-              >
-                <source src={project.video.src} type="video/mp4" />
-                Your browser does not support embedded video playback.
-              </video>
+              <iframe
+                className="aspect-video h-full w-full bg-black"
+                src={project.youtube.embedUrl}
+                title={project.youtube.label}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+              />
             </div>
             <div className="relative mt-3 flex flex-wrap items-center justify-between gap-3 px-1">
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/46">
@@ -207,7 +204,10 @@ function ProjectVisual({ project }: { project: Project }) {
                 fill
                 sizes="(min-width: 1024px) 25vw, 50vw"
                 className="object-cover transition duration-700 group-hover:scale-105"
-                style={{ objectPosition: image.objectPosition ?? "center" }}
+                style={{
+                  objectPosition:
+                    "objectPosition" in image ? image.objectPosition : "center",
+                }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/78 via-black/8 to-transparent" />
               <div className="absolute inset-x-4 bottom-4">
