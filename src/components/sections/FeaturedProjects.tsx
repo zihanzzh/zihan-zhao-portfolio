@@ -19,7 +19,7 @@ export function FeaturedProjects() {
       ).matches;
 
       if (reduceMotion) {
-        gsap.set([".projects-label", ".projects-heading", ".project-card"], {
+        gsap.set([".projects-heading", ".project-card"], {
           autoAlpha: 1,
           y: 0,
           scale: 1,
@@ -40,12 +40,11 @@ export function FeaturedProjects() {
           },
           defaults: { ease: "power3.out" },
         })
-        .from(".projects-label", { autoAlpha: 0, y: 18, duration: 0.6 })
-        .from(
-          ".projects-heading",
-          { autoAlpha: 0, yPercent: 70, duration: 0.9 },
-          "-=0.35",
-        );
+        .from(".projects-heading", {
+          autoAlpha: 0,
+          yPercent: 70,
+          duration: 0.9,
+        });
 
       gsap.fromTo(
         q(".pipeline-pulse"),
@@ -125,21 +124,14 @@ export function FeaturedProjects() {
       </div>
 
       <div className="mx-auto max-w-7xl">
-        <div className="mb-14 grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
+        <div className="mb-14">
           <div>
-            <p className="projects-label mb-5 text-xs font-semibold uppercase tracking-[0.32em] text-sky-100/45">
-              Selected Work / Case Studies
-            </p>
             <div className="overflow-hidden">
               <h2 className="projects-heading bg-gradient-to-b from-white via-[#8f9baa] to-[#252a30] bg-clip-text text-[clamp(3.2rem,8.5vw,8.2rem)] font-black uppercase leading-[0.82] tracking-normal text-transparent">
                 Featured Projects
               </h2>
             </div>
           </div>
-          <p className="max-w-2xl text-lg leading-8 text-white/58 lg:justify-self-end">
-            Three portfolio case studies across AI systems, physical computing,
-            and creative 3D work.
-          </p>
         </div>
 
         <div>

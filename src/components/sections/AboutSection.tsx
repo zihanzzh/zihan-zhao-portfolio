@@ -20,7 +20,7 @@ export function AboutSection() {
       ).matches;
 
       if (reduceMotion) {
-        gsap.set([".about-label", ".about-heading", ".about-word", ".about-card"], {
+        gsap.set([".about-heading", ".about-word", ".about-card"], {
           autoAlpha: 1,
           y: 0,
           scale: 1,
@@ -38,12 +38,11 @@ export function AboutSection() {
         defaults: { ease: "power3.out" },
       });
 
-      tl.from(".about-label", { autoAlpha: 0, y: 18, duration: 0.6 })
-        .from(
-          ".about-heading",
-          { autoAlpha: 0, yPercent: 80, duration: 0.9 },
-          "-=0.35",
-        )
+      tl.from(".about-heading", {
+        autoAlpha: 0,
+        yPercent: 80,
+        duration: 0.9,
+      })
         .from(
           ".about-word",
           {
@@ -83,9 +82,6 @@ export function AboutSection() {
 
       <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
         <div>
-          <p className="about-label mb-5 text-xs font-semibold uppercase tracking-[0.32em] text-sky-100/45">
-            Profile / Foundation
-          </p>
           <div className="overflow-hidden">
             <h2 className="about-heading bg-gradient-to-b from-white via-[#8f9baa] to-[#252a30] bg-clip-text text-[clamp(3.4rem,9vw,8.5rem)] font-black uppercase leading-[0.82] tracking-normal text-transparent">
               {profile.about.heading}

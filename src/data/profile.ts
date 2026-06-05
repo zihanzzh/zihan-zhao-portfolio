@@ -29,6 +29,7 @@ export const profile = {
       summary:
         "A full-stack web service that transforms MP4 videos into Chinese-subtitled videos using an AI pipeline.",
       visual: "pipeline",
+      repoUrl: "https://github.com/zihanzzh/subtitle-service.git",
       pipeline: [
         "MP4 Upload",
         "FFmpeg Audio Extraction",
@@ -63,6 +64,10 @@ export const profile = {
       summary:
         "An Arduino-powered physical device that converts text into Morse code and writes it using a servo-actuated pen and stepper-motor paper feeder.",
       visual: "hardware",
+      video: {
+        src: "/videos/projects/Morse-Code-Converter.mp4",
+        label: "Morse Code Converter demo video",
+      },
       details: [
         "Servo-actuated pen",
         "Stepper-motor paper feeder",
@@ -88,6 +93,25 @@ export const profile = {
       summary:
         "A collection of 10+ original Blender projects focused on mesh editing, shading, lighting, stylized rendering, and beginner-friendly instructional design.",
       visual: "gallery",
+      gallery: [
+        {
+          label: "Coffee Cup",
+          src: "/images/projects/blender/coffee-cup.png",
+        },
+        {
+          label: "Donut Render",
+          src: "/images/projects/blender/donut.png",
+        },
+        {
+          label: "Lighting Study",
+          src: "/images/projects/blender/lighting.png",
+        },
+        {
+          label: "Rocket Model",
+          src: "/images/projects/blender/rocket-model-v2.png",
+          objectPosition: "center top",
+        },
+      ],
       details: [
         "Coffee cup, donut, and rocket projects",
         "Stylized rendering",
@@ -116,40 +140,131 @@ export const profile = {
         "WhisperX",
         "Gemini",
         "CUDA",
+        "AI Pipelines",
       ],
     },
     {
       category: "Frontend / Web",
-      items: ["Next.js", "React", "Tailwind CSS", "Bootstrap", "HTML/CSS"],
+      items: [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "Tailwind CSS",
+        "Bootstrap",
+        "HTML/CSS",
+        "Vercel",
+        "GSAP",
+        "ScrollTrigger",
+        "Responsive UI",
+      ],
     },
     {
       category: "Systems / Hardware",
       items: [
         "C++",
         "Arduino",
+        "Verilog",
+        "Digital Logic",
+        "Boolean Algebra",
+        "Karnaugh Maps",
+        "Combinational Circuits",
+        "Analog Circuits",
         "Servo Motors",
         "Stepper Motors",
         "Breadboard Circuits",
-        "Digital and Analog Circuits",
       ],
     },
     {
-      category: "Creative Tools",
-      items: ["Blender", "Git", "Linux", "ChatGPT", "Video Editing"],
+      category: "Creative / AI Workflow Tools",
+      items: [
+        "Blender",
+        "Git",
+        "Linux",
+        "ChatGPT",
+        "Codex",
+        "Claude Code",
+        "Ollama",
+        "VS Code",
+        "Video Editing",
+      ],
     },
   ],
   leadership: [
     {
       role: "ACM Social Branch Co-Chair",
+      organization: "UCSB ACM",
+      category: "Community Operations",
       summary:
-        "Builds community through inclusive student events, sponsorship coordination, logistics, and club-wide social initiatives.",
+        "Social Branch Co-Chair for UCSB ACM, planning inclusive community-building events for UCSB engineering students.",
+      details: [
+        "Plans inclusive community-building events for UCSB engineering students",
+        "Coordinates sponsorships, logistics, and event operations",
+        "Supports club-wide social initiatives focused on student engagement",
+      ],
+      features: [
+        {
+          label: "Community",
+          value:
+            "Builds repeatable event formats that help engineering students connect beyond class.",
+        },
+        {
+          label: "Operations",
+          value:
+            "Coordinates planning, sponsorship touchpoints, logistics, and day-of execution.",
+        },
+        {
+          label: "Engagement",
+          value:
+            "Turns social initiatives into club-wide moments for stronger student participation.",
+        },
+      ],
+      metrics: [
+        "300+ students",
+        "Community events",
+        "Sponsorships",
+        "Club-wide initiatives",
+      ],
       impact: ["300+ engineering students reached", "35% engagement lift"],
     },
     {
-      role: "CSSA Technical Co-Lead",
+      role: "CSSA Website / Technical Co-Lead",
+      organization: "UCSB CSSA",
+      category: "Web Platform Leadership",
       summary:
-        "Leads web development and technical operations for the UCSB CSSA website and student community platform.",
+        "Technical Co-Lead for the official UCSB CSSA website, building and maintaining a real web platform for a 2000+ student community.",
+      details: [
+        "Led a 5-person development team",
+        "Built a Next.js and Tailwind CSS platform for departments, staff directories, and organizational content",
+        "Implemented bilingual Chinese and English support",
+        "Integrated Google Calendar for events",
+        "Deployed and maintained the platform using Vercel and Git workflow",
+        "Served a 2000+ student community",
+      ],
+      features: [
+        {
+          label: "Platform",
+          value:
+            "Built a real web presence for departments, staff directories, and organization content.",
+        },
+        {
+          label: "Localization",
+          value:
+            "Supported bilingual Chinese and English content for the UCSB CSSA community.",
+        },
+        {
+          label: "Delivery",
+          value:
+            "Maintained deployment and collaboration through Vercel and Git workflow.",
+        },
+      ],
+      metrics: [
+        "5-person team",
+        "2000+ community",
+        "Bilingual platform",
+        "Vercel deployment",
+      ],
       impact: ["5-person development team", "2000+ student community"],
+      liveSite: "https://ucsbcssa.com",
       project: {
         title: "CSSA Website",
         category: "Real-world Web Platform / Leadership",
@@ -177,6 +292,6 @@ export const profile = {
   contact: {
     email: "henryzhao@ucsb.edu",
     linkedin: "https://www.linkedin.com/in/zihanz2028",
-    github: "#",
+    github: "https://github.com/zihanzzh",
   },
 } as const;

@@ -5,7 +5,6 @@ import type { PointerEvent } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { Navbar } from "@/components/Navbar";
 
 gsap.registerPlugin(useGSAP);
 
@@ -29,7 +28,6 @@ export function HeroSection() {
       if (reduceMotion.current) {
         gsap.set(
           [
-            ".hero-nav",
             ".hero-title-line",
             ".hero-avatar",
             ".hero-kicker",
@@ -44,8 +42,7 @@ export function HeroSection() {
         defaults: { ease: "power3.out", duration: 1 },
       });
 
-      tl.from(".hero-nav", { autoAlpha: 0, y: -24, duration: 0.8 })
-        .from(
+      tl.from(
           ".hero-title-line",
           {
             autoAlpha: 0,
@@ -53,7 +50,6 @@ export function HeroSection() {
             stagger: 0.12,
             duration: 1.1,
           },
-          "-=0.35",
         )
         .from(
           ".hero-avatar",
@@ -123,8 +119,6 @@ export function HeroSection() {
       onPointerLeave={handlePointerLeave}
       className="relative isolate flex min-h-svh overflow-hidden bg-[#0c0c0c] px-5 text-white sm:px-8 lg:px-12"
     >
-      <Navbar />
-
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute left-1/2 top-[48%] h-[min(46vw,560px)] w-[min(46vw,560px)] -translate-x-1/2 -translate-y-1/2 rounded-full bg-sky-300/[0.045] blur-3xl" />
         <div className="absolute inset-x-0 bottom-0 h-1/2 bg-[radial-gradient(circle_at_50%_32%,rgba(96,165,250,0.07),transparent_30%),linear-gradient(180deg,transparent,rgba(12,12,12,0.98)_78%)]" />

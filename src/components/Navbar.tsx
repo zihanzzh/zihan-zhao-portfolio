@@ -1,14 +1,14 @@
 const navLinks = [
   { label: "About", href: "#about" },
   { label: "Projects", href: "#projects" },
-  { label: "Skills", href: "#skills" },
   { label: "Leadership", href: "#leadership" },
+  { label: "Skills", href: "#skills" },
 ];
 
 export function Navbar() {
   return (
-    <header className="hero-nav fixed left-0 top-0 z-40 w-full px-5 py-5 sm:px-8 lg:px-12">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between rounded-full border border-white/10 bg-[#0c0c0c]/55 px-5 py-3 text-sm text-white/80 shadow-2xl shadow-black/30 backdrop-blur-md">
+    <header className="hero-nav fixed left-0 top-0 z-[100] w-full px-5 py-5 sm:px-8 lg:px-12">
+      <nav className="mx-auto flex max-w-7xl items-center justify-between rounded-full border border-white/10 bg-[#0c0c0c]/72 px-5 py-3 text-sm text-white/80 shadow-2xl shadow-black/30 backdrop-blur-xl">
         <a
           href="#hero"
           className="font-semibold uppercase tracking-[0.28em] text-white"

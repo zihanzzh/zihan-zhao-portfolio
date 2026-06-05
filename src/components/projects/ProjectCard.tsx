@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { profile } from "@/data/profile";
 
 type Project = (typeof profile.projects)[number];
@@ -56,6 +57,16 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
                 </span>
               ))}
             </div>
+            {"repoUrl" in project ? (
+              <a
+                href={project.repoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex w-fit items-center justify-center rounded-full border border-sky-100/35 bg-sky-100 px-6 py-3 text-xs font-black uppercase tracking-[0.18em] text-[#0c0c0c] shadow-[0_0_34px_rgba(125,179,255,0.2)] transition hover:-translate-y-0.5 hover:bg-white hover:shadow-[0_0_44px_rgba(186,230,253,0.28)]"
+              >
+                GitHub Repo
+              </a>
+            ) : null}
           </div>
         </div>
 
@@ -115,39 +126,64 @@ function ProjectVisual({ project }: { project: Project }) {
       <div className="relative w-full overflow-hidden rounded-[8px] border border-white/10 bg-[#080808] p-5">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_26%_20%,rgba(255,255,255,0.08),transparent_26%),linear-gradient(135deg,rgba(96,165,250,0.08),transparent_42%)]" />
         <div className="relative grid h-full min-h-[390px] gap-4 lg:grid-rows-[1.1fr_0.9fr]">
-          <div className="relative overflow-hidden rounded-[8px] border border-dashed border-white/18 bg-[#0d0d0d] p-6">
-            <div className="absolute inset-0 bg-[linear-gradient(135deg,transparent_0%,rgba(255,255,255,0.05)_48%,transparent_49%)]" />
-            <div className="relative flex h-full flex-col justify-between">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/38">
-                Future Demo Video
+          <div className="relative overflow-hidden rounded-[8px] border border-white/12 bg-[#0d0d0d] p-3 shadow-2xl shadow-black/25">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_10%,rgba(186,230,253,0.09),transparent_30%)]" />
+            <div className="relative overflow-hidden rounded-[8px] border border-white/10 bg-black">
+              <video
+                className="aspect-video h-full w-full bg-black object-cover"
+                controls
+                muted
+                playsInline
+                preload="metadata"
+                aria-label={project.video.label}
+              >
+                <source src={project.video.src} type="video/mp4" />
+                Your browser does not support embedded video playback.
+              </video>
+            </div>
+            <div className="relative mt-3 flex flex-wrap items-center justify-between gap-3 px-1">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/46">
+                Hardware Demo
               </p>
-              <div className="flex items-center justify-center py-10">
-                <div className="flex h-20 w-20 items-center justify-center rounded-full border border-white/15 bg-white/[0.045] text-sm font-bold uppercase tracking-[0.16em] text-white/72 shadow-[0_0_42px_rgba(255,255,255,0.08)]">
-                  Play
-                </div>
+              <div className="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.16em] text-sky-100/42">
+                <span className="h-2 w-2 rounded-full bg-sky-100/70 shadow-[0_0_18px_rgba(186,230,253,0.25)]" />
+                Servo pen + paper feed
               </div>
-              <p className="text-sm text-white/38">
-                Servo pen, paper feeder, joystick input, and LCD feedback.
-              </p>
             </div>
           </div>
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
             {[
-              ["Arduino", "Board"],
-              ["-.-", "Signal"],
-              ["Servo Pen", "Output"],
-              ["LCD", "Feedback"],
-            ].map(([label, meta]) => (
+              {
+                label: "Arduino Board",
+                meta: "Microcontroller hub",
+                visual: "board",
+              },
+              {
+                label: "Signal Encoding",
+                meta: "Text to dots/dashes",
+                visual: "signal",
+              },
+              {
+                label: "Servo Pen Output",
+                meta: "Physical writing arm",
+                visual: "servo",
+              },
+              {
+                label: "LCD Feedback",
+                meta: "Input status display",
+                visual: "lcd",
+              },
+            ].map((module) => (
               <div
-                key={label}
-                className="rounded-[8px] border border-white/10 bg-white/[0.035] p-4 shadow-2xl shadow-black/20"
+                key={module.label}
+                className="relative overflow-hidden rounded-[8px] border border-white/10 bg-white/[0.035] p-4 shadow-2xl shadow-black/20"
               >
-                <div className="mb-4 h-1.5 rounded-full bg-gradient-to-r from-sky-100/18 to-sky-100/46" />
-                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-white/56">
-                  {label}
+                <HardwareModuleVisual visual={module.visual} />
+                <p className="mt-4 text-xs font-semibold uppercase tracking-[0.14em] text-white/64">
+                  {module.label}
                 </p>
-                <p className="mt-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-white/28">
-                  {meta}
+                <p className="mt-2 text-[10px] font-semibold uppercase tracking-[0.12em] leading-4 text-white/34">
+                  {module.meta}
                 </p>
               </div>
             ))}
@@ -159,25 +195,99 @@ function ProjectVisual({ project }: { project: Project }) {
 
   if (project.visual === "gallery") {
     return (
-      <div className="grid w-full grid-cols-2 gap-3 rounded-[8px] border border-white/10 bg-[#090a0b] p-3 [perspective:900px]">
-        {["Coffee Study", "Donut Render", "Rocket Form", "Lighting Pass"].map(
-          (label, index) => (
+      <div className="grid w-full grid-cols-2 gap-3 rounded-[8px] border border-white/10 bg-[#090a0b] p-3 shadow-2xl shadow-black/25 [perspective:900px]">
+        {project.gallery.map((image, index) => (
             <div
-              key={label}
-              className="relative min-h-44 overflow-hidden rounded-[8px] border border-white/10 bg-[radial-gradient(circle_at_35%_28%,rgba(226,232,240,0.24),transparent_25%),linear-gradient(135deg,rgba(96,165,250,0.14),rgba(255,255,255,0.035))] shadow-2xl shadow-black/20 [transform:rotateX(4deg)_rotateY(-5deg)]"
+              key={image.src}
+              className="group relative min-h-44 overflow-hidden rounded-[8px] border border-white/10 bg-[#0d0e10] shadow-2xl shadow-black/20 [transform:rotateX(3deg)_rotateY(-3deg)]"
             >
-              <div className="absolute left-1/2 top-1/2 h-20 w-20 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/10 blur-xl" />
-              <div className="absolute right-5 top-5 h-12 w-12 rounded-full border border-white/10 bg-white/[0.045]" />
-              <div className="absolute inset-4 rounded-[8px] border border-white/10" />
+              <Image
+                src={image.src}
+                alt={`${image.label} Blender render`}
+                fill
+                sizes="(min-width: 1024px) 25vw, 50vw"
+                className="object-cover transition duration-700 group-hover:scale-105"
+                style={{ objectPosition: image.objectPosition ?? "center" }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/78 via-black/8 to-transparent" />
               <div className="absolute inset-x-4 bottom-4">
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-white/62">
-                  {String(index + 1).padStart(2, "0")} / {label}
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-white/82">
+                  {String(index + 1).padStart(2, "0")} / {image.label}
                 </p>
               </div>
             </div>
-          ),
-        )}
+          ))}
       </div>
     );
   }
+}
+
+function HardwareModuleVisual({ visual }: { visual: string }) {
+  if (visual === "board") {
+    return (
+      <div className="relative h-16 overflow-hidden rounded-[8px] border border-sky-100/12 bg-[#080b0f]">
+        <svg viewBox="0 0 160 72" className="h-full w-full" aria-hidden="true">
+          <rect x="24" y="14" width="112" height="44" rx="7" fill="rgba(186,230,253,0.055)" stroke="rgba(186,230,253,0.18)" />
+          <rect x="64" y="25" width="32" height="22" rx="4" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.16)" />
+          {[35, 47, 59, 101, 113, 125].map((x) => (
+            <rect key={x} x={x} y="20" width="5" height="5" rx="1" fill="rgba(186,230,253,0.42)" />
+          ))}
+          {[35, 47, 59, 101, 113, 125].map((x) => (
+            <rect key={`b-${x}`} x={x} y="47" width="5" height="5" rx="1" fill="rgba(255,255,255,0.22)" />
+          ))}
+          <path d="M40 36 H64 M96 36 H120 M80 25 V18 M80 47 V54" stroke="rgba(186,230,253,0.34)" strokeWidth="2" strokeLinecap="round" />
+        </svg>
+      </div>
+    );
+  }
+
+  if (visual === "signal") {
+    return (
+      <div className="relative flex h-16 items-center justify-center overflow-hidden rounded-[8px] border border-sky-100/12 bg-[#080b0f]">
+        <svg viewBox="0 0 160 72" className="h-full w-full" aria-hidden="true">
+          <path d="M18 44 H142" stroke="rgba(255,255,255,0.11)" strokeWidth="2" strokeLinecap="round" />
+          <path d="M22 30 L34 30 L34 22 L46 22 L46 30 L64 30 L64 20 L86 20 L86 30 L100 30 L100 24 L112 24 L112 30 L138 30" fill="none" stroke="rgba(186,230,253,0.42)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          {[
+            ["dot", 30],
+            ["dash", 52],
+            ["dot", 84],
+            ["dot", 104],
+          ].map(([type, x]) =>
+            type === "dash" ? (
+              <rect key={`${type}-${x}`} x={Number(x) - 10} y="47" width="22" height="5" rx="2.5" fill="rgba(186,230,253,0.62)" />
+            ) : (
+              <circle key={`${type}-${x}`} cx={Number(x)} cy="49.5" r="4" fill="rgba(186,230,253,0.62)" />
+            ),
+          )}
+        </svg>
+      </div>
+    );
+  }
+
+  if (visual === "servo") {
+    return (
+      <div className="relative h-16 overflow-hidden rounded-[8px] border border-sky-100/12 bg-[#080b0f]">
+        <svg viewBox="0 0 160 72" className="h-full w-full" aria-hidden="true">
+          <rect x="22" y="24" width="38" height="28" rx="6" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.15)" />
+          <circle cx="60" cy="38" r="7" fill="rgba(186,230,253,0.16)" stroke="rgba(186,230,253,0.5)" />
+          <path d="M66 36 L112 25" stroke="rgba(186,230,253,0.46)" strokeWidth="4" strokeLinecap="round" />
+          <path d="M112 25 L126 49" stroke="rgba(255,255,255,0.28)" strokeWidth="3" strokeLinecap="round" />
+          <path d="M92 53 H138" stroke="rgba(255,255,255,0.16)" strokeWidth="3" strokeLinecap="round" />
+          <circle cx="126" cy="49" r="3" fill="rgba(186,230,253,0.58)" />
+        </svg>
+      </div>
+    );
+  }
+
+  return (
+    <div className="relative h-16 overflow-hidden rounded-[8px] border border-sky-100/12 bg-[#080b0f] p-3">
+      <svg viewBox="0 0 160 72" className="h-full w-full" aria-hidden="true">
+        <rect x="24" y="14" width="112" height="44" rx="5" fill="rgba(186,230,253,0.055)" stroke="rgba(186,230,253,0.18)" />
+        <rect x="34" y="24" width="72" height="5" rx="2.5" fill="rgba(255,255,255,0.22)" />
+        <rect x="34" y="36" width="54" height="5" rx="2.5" fill="rgba(186,230,253,0.38)" />
+        <rect x="34" y="48" width="24" height="5" rx="2.5" fill="rgba(255,255,255,0.16)" />
+        <rect x="112" y="24" width="8" height="20" rx="2" fill="rgba(186,230,253,0.48)" />
+      </svg>
+    </div>
+  );
 }
