@@ -140,7 +140,7 @@ export function HeroSection() {
 
           <div
             ref={avatarRef}
-            className="hero-avatar absolute left-1/2 top-[63%] z-20 w-[min(84vw,500px)] -translate-x-1/2 -translate-y-1/2 transform-gpu bg-transparent will-change-transform [transform-style:preserve-3d] sm:top-[66%] sm:w-[min(47vw,570px)] lg:w-[600px]"
+            className="hero-avatar absolute left-1/2 top-[63%] z-20 w-[min(84vw,500px)] -translate-x-1/2 -translate-y-1/2 transform-gpu bg-transparent will-change-transform [transform-style:preserve-3d] sm:top-[66%] sm:w-[min(42vw,430px)] lg:w-[450px]"
           >
             <div className="absolute left-1/2 top-[43%] -z-10 h-[54%] w-[58%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-sky-300/[0.055] blur-3xl" />
             <div className="absolute bottom-[16%] left-1/2 z-10 h-[28%] w-[54%] -translate-x-1/2 rounded-full bg-[#0c0c0c]/70 blur-2xl" />
@@ -151,7 +151,7 @@ export function HeroSection() {
               height={1536}
               priority
               unoptimized
-              className="h-auto w-full select-none bg-transparent object-contain drop-shadow-[0_30px_64px_rgba(96,165,250,0.1)] [mask-image:radial-gradient(ellipse_at_50%_34%,black_0%,black_72%,rgba(0,0,0,0.68)_86%,transparent_100%),linear-gradient(to_bottom,black_0%,black_67%,rgba(0,0,0,0.68)_74%,transparent_88%)] [mask-composite:intersect] [-webkit-mask-image:radial-gradient(ellipse_at_50%_34%,black_0%,black_72%,rgba(0,0,0,0.68)_86%,transparent_100%),linear-gradient(to_bottom,black_0%,black_67%,rgba(0,0,0,0.68)_74%,transparent_88%)] [-webkit-mask-composite:source-in]"
+              className="h-auto w-full select-none bg-transparent object-contain drop-shadow-[0_30px_64px_rgba(96,165,250,0.1)] [mask-image:radial-gradient(ellipse_62%_72%_at_50%_34%,black_0%,black_54%,rgba(0,0,0,0.82)_64%,rgba(0,0,0,0.45)_75%,transparent_88%)] [-webkit-mask-image:radial-gradient(ellipse_62%_72%_at_50%_34%,black_0%,black_54%,rgba(0,0,0,0.82)_64%,rgba(0,0,0,0.45)_75%,transparent_88%)]"
               draggable={false}
             />
           </div>

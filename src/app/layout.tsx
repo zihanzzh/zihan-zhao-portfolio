@@ -13,9 +13,12 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Zihan Zhao — AI & Computer Engineering Portfolio",
+  title: "Zihan Zhao",
   description:
     "Personal portfolio for Zihan Zhao, a Computer Engineering student at UCSB building AI tools, web systems, and creative engineering projects.",
+  icons: {
+    icon: "/icon.svg",
+  },
 };
 
 export default function RootLayout({
