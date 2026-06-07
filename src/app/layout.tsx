@@ -17,7 +17,11 @@ export const metadata: Metadata = {
   description:
     "Personal portfolio for Zihan Zhao, a Computer Engineering student at UCSB building AI tools, web systems, and creative engineering projects.",
   icons: {
-    icon: "/icon.svg",
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon.svg", type: "image/svg+xml" },
+    ],
+    apple: "/apple-icon.png",
   },
 };
 
